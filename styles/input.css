@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .burger {
+    @apply tw-h-[7px] tw-w-[50px] tw-bg-black tw-mb-[5px] tw-ease-out tw-duration-100;
+  }
+  .b1 {
+    @apply tw-rotate-[46deg] tw-origin-bottom-left tw-mb-[12px];
+  }
+  .b2 {
+    @apply tw-opacity-0;
+  }
+  .b3 {
+    @apply tw-rotate-[-45deg] tw-origin-top-left tw-mt-[12px];
+  }
+
+  .nav-link {
+    @apply tw-text-white tw-p-[20px] tw-font-medium tw-text-[18px] tw-border-b tw-border-white tw-w-full;
+  }
+}
