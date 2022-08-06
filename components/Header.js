@@ -2,13 +2,20 @@ import React, { useState } from "react";
 import { IoMdCart } from "react-icons/io";
 import Link from "next/link";
 
-export default function Header() {
-  const [burger, setBurger] = useState(true);
+export default function Header({ data }) {
+  const [burger, setBurger] = useState(false);
+  const { banner, setBanner } = data;
+  function toggleNavbar() {
+    if (!burger) setBanner({ ...banner, title: "white" });
+    else setBanner({ ...banner, title: "black" });
+    setBurger(!burger);
+  }
+
   return (
     <>
       <div className="tw-w-screen sm:tw-w-[100px] tw-flex tw-items-center tw-justify-end sm:tw-justify-start sm:tw-flex-col sm:tw-py-[20px] tw-border-b-2 sm:tw-border-r-2 tw-border-green tw-h-[70px] sm:tw-h-screen tw-fixed tw-top-0 tw-left-0 tw-gap-[20px] tw-z-10 tw-bg-white tw-px-[20px] sm:tw-px-0">
         <div
-          onClick={() => setBurger(!burger)}
+          onClick={toggleNavbar}
           className={`sm:tw-h-[50px] hover:tw-cursor-pointer`}
         >
           <div className={`${burger ? "b1" : ""} burger`}></div>

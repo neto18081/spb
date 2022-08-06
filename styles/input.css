@@ -19,4 +19,11 @@
   .nav-link {
     @apply tw-text-white tw-p-[20px] tw-font-medium tw-text-[18px] tw-border-b tw-border-white tw-w-full;
   }
+
+  .title {
+    @apply tw-text-[42px] sm:tw-text-[72px] md:tw-text-[108px] tw-font-bold tw-text-black tw-leading-[110%];
+  }
+  .text {
+    @apply tw-text-[16px] tw-text-black tw-font-medium sm:tw-pl-[20px];
+  }
 }
