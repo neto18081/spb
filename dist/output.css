@@ -1071,6 +1071,10 @@ video {
   padding: 2rem;
 }
 
+.tw-p-10 {
+  padding: 2.5rem;
+}
+
 .tw-py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;

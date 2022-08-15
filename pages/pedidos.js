@@ -20,6 +20,7 @@ export default function Carrinho() {
                     Sistema <br /> para Ecommerce
                 </span>
                 <h2 className='tw-mx-auto tw-w-min tw-flex tw-flex-start tw-text-6xl tw-mb-20 tw-font-bold'>Pedidos</h2>
+
                 <div className="tw-border-3 tw-p-8 tw-ml-36">
                     <h3 className="tw-font-bold tw-text-3xl tw-mb-1">Pedido número #15784</h3>
                     <span className="tw-text-gray-500 tw-ml-4">Dia 28 de junho de 2022</span>
@@ -29,7 +30,7 @@ export default function Carrinho() {
                         <span className="tw-text-md">Quantidade</span>
                         <span className="tw-text-md">Preço</span>
                     </div>
-                    <div className="tw-my-10 tw-grid tw-grid-cols-4 tw-gap-10 tw-items-center tw-w-[90%] tw-border-2 tw-h-max tw-shadow-xl tw-py-8">
+                    <div className="tw-my-10 tw-grid tw-grid-cols-4 tw-gap-10 tw-items-center tw-w-[90%] tw-border-2 tw-h-max tw-shadow-xl tw-rounded-2xl tw-py-8">
                         <img src="https://github.com/marlonberaldo.png" alt="" className="tw-w-20 tw-mx-auto" />
                         <span className="tw-font-bold tw-text-center tw-text-xl">MauroCMP, usuario de skate</span>
                         <span className=" tw-text-center tw-font-bold tw-text-xl">1</span>

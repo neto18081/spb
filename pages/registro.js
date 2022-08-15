@@ -19,9 +19,9 @@ export default function Login() {
                 >
                     Sistema <br /> para Ecommerce
                 </span>
-                <h2 className='tw-mx-auto tw-w-min tw-flex tw-flex-start tw-text-8xl tw-mb-16 tw-font-bold '>Cadastro</h2>
+                <h2 className='tw-mx-auto tw-w-min tw-flex tw-flex-start tw-text-6xl tw-mb-8 tw-font-bold '>Cadastro</h2>
 
-                <form className='tw-flex tw-justify-center tw-items-center tw-flex-col tw-w-3/5 tw-mx-auto tw-p-5'>
+                <form className='tw-flex tw-justify-center tw-items-center tw-flex-col tw-w-3/5 tw-mx-auto tw-p-5 tw-rounded-2xl tw-shadow-2xl tw-mb-10'>
                     <label class="tw-text-sm tw-font-bold tw-text-xl">Nome</label>
                     <input type="text" placeholder='Seu nome..' id='nome' className='tw-rounded-xl tw-px-6 tw-py-2 tw-border-2 tw-w-3/5 hover:tw-border-black tw-mt-4 tw-mb-4' autocomplete="off" />
                     <label class="tw-text-sm tw-font-bold tw-text-xl">Email</label>

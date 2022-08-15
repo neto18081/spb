@@ -39,7 +39,7 @@ export default function Categoria({ cat }) {
                     Sistema <br /> para Ecommerce
                 </span>
 
-                <h2 className='tw-mx-auto tw-w-min tw-flex tw-flex-start tw-text-8xl tw-font-bold'>{cat.categoria}</h2>
+                <h2 className='tw-mx-auto tw-w-min tw-flex tw-flex-start tw-text-6xl tw-font-bold'>{cat.categoria}</h2>
                 <div className='tw-mt-16 tw-w-4/5 tw-mx-auto'>
 
                     <div className='tw-grid tw-grid-cols-3 tw-gap-10' >
