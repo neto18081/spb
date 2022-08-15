@@ -19,7 +19,7 @@ export default function Login() {
                 >
                     Sistema <br /> para Ecommerce
                 </span>
-                <h2 className='tw-mx-auto tw-w-min tw-flex tw-flex-start tw-text-8xl tw-mb-16 '>Cadastro</h2>
+                <h2 className='tw-mx-auto tw-w-min tw-flex tw-flex-start tw-text-8xl tw-mb-16 tw-font-bold '>Cadastro</h2>
 
                 <form className='tw-flex tw-justify-center tw-items-center tw-flex-col tw-w-3/5 tw-mx-auto tw-p-5'>
                     <label class="tw-text-sm tw-font-bold tw-text-xl">Nome</label>

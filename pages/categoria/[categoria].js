@@ -4,18 +4,21 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Footer from '../../components/Footer';
 import { DataProducts, Categorias } from "../../components/Arquivos"
+import Error from '../404';
 
 export default function Categoria({ cat }) {
     const [banner, setBanner] = useState({
         title: "black",
     });
+
     let categoriaExiste = false;
     for (let c of Categorias) {
         if (c.slug == cat.categoria) {
             categoriaExiste = true;
         }
     }
-    if (!categoriaExiste) return <h1>Categoria não existe!</h1>
+    if (!categoriaExiste) return <Error />
+
 
     const produtos = []
     DataProducts.forEach((data) => {
@@ -35,7 +38,8 @@ export default function Categoria({ cat }) {
                 >
                     Sistema <br /> para Ecommerce
                 </span>
-                <h2 className='tw-mx-auto tw-w-min tw-flex tw-flex-start tw-text-9xl'>{cat.categoria}</h2>
+
+                <h2 className='tw-mx-auto tw-w-min tw-flex tw-flex-start tw-text-8xl tw-font-bold'>{cat.categoria}</h2>
                 <div className='tw-mt-16 tw-w-4/5 tw-mx-auto'>
 
                     <div className='tw-grid tw-grid-cols-3 tw-gap-10' >

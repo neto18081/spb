@@ -19,7 +19,7 @@ export default function Carrinho() {
                 >
                     Sistema <br /> para Ecommerce
                 </span>
-                <h2 className='tw-mx-auto tw-w-min tw-flex tw-flex-start tw-text-9xl tw-mb-20 '>Carrinho</h2>
+                <h2 className='tw-mx-auto tw-w-min tw-flex tw-flex-start tw-text-8xl tw-mb-20 tw-font-bold'>Carrinho</h2>
 
                 <div className=" tw-mb-10 tw-ml-36 tw-flex tw-items-center tw-w-[90%] tw-justify-around tw-border-2 tw-h-36 tw-shadow-xl">
                     <img src="https://github.com/marlonberaldo.png" alt="" className="tw-w-20" />

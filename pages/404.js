@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import { useState } from 'react'
 
 
-export default function Error({ single }) {
+export default function Error() {
     const [banner, setBanner] = useState({
         title: "black",
     });

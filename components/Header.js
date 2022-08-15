@@ -53,8 +53,8 @@ export default function Header({ data }) {
           <Link href="/login">
             <a className="nav-link tw-bg-gold hover:tw-text-black hover:tw-font-bold">Login</a>
           </Link>
-          {/* <Link href="">
-            <a className="nav-link tw-bg-black">Registrar</a>
+          {/* <Link href="/pedidos">
+            <a className="nav-link tw-bg-black">pedidos</a>
           </Link> */}
           <Link href="/equipe">
             <a className="nav-link tw-bg-black hover:tw-text-gold">Nossa equipe</a>
