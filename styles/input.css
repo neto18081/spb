@@ -6,12 +6,15 @@
   .burger {
     @apply tw-h-[7px] tw-w-[50px] tw-bg-black tw-mb-[5px] tw-ease-out tw-duration-100;
   }
+
   .b1 {
     @apply tw-rotate-[46deg] tw-origin-bottom-left tw-mb-[12px];
   }
+
   .b2 {
     @apply tw-opacity-0;
   }
+
   .b3 {
     @apply tw-rotate-[-45deg] tw-origin-top-left tw-mt-[12px];
   }
@@ -21,9 +24,10 @@
   }
 
   .title {
-    @apply tw-text-[42px] sm:tw-text-[72px] md:tw-text-[108px] tw-font-bold tw-text-black tw-leading-[110%];
+    @apply tw-text-[42px] tw-font-bold tw-text-black tw-leading-[110%];
   }
+
   .text {
-    @apply tw-text-[16px] tw-text-black tw-font-medium sm:tw-pl-[20px];
+    @apply tw-text-[16px] tw-text-black tw-font-medium;
   }
 }

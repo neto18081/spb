@@ -3,9 +3,8 @@ export default function Banner({ banner }) {
     <div>
       <div className="tw-w-screen tw-h-screen tw-bg-[url('/home-banner.png')] tw-bg-center tw-bg-no-repeat tw-bg-right lg:tw-bg-contain tw-flex tw-items-center tw-pt-[200px]">
         <span
-          className={`tw-absolute tw-top-[80px] tw-left-[20px] sm:tw-left-[110px] tw-leading-[110%] tw-text-[22px] tw-font-bold ${
-            banner.title == "white" ? "tw-text-white" : "tw-text-black"
-          }`}
+          className={`tw-absolute tw-top-[80px] tw-left-[20px] sm:tw-left-[110px] tw-leading-[110%] tw-text-[22px] tw-font-bold ${banner.title == "white" ? "tw-text-white" : "tw-text-black"
+            }`}
         >
           Sistema <br /> para Ecommerce
         </span>
