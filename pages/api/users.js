@@ -1,11 +1,13 @@
-import client, { createUser, retrieveUsers } from "../../utils/db";
+import client, { createUser, getUser } from "../../utils/db";
 
 export default async function Users(req, res) {
   try {
     await client.connect();
 
-    if (req.method == "GET") await retrieveUsers(client, res);
+    // PASSA UMA QUERY PARA FILTRAR
+    if (req.method == "GET") await getUser(client, req.query, res);
 
+    // PASSA NO BODY INFORMAÇÕES PARA CRIAR O USUÁRIO
     if (req.method == "POST") await createUser(client, req.body, res);
   } catch (err) {
     res.json({
