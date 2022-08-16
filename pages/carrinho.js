@@ -7,6 +7,12 @@ import { DataProducts } from "../components/Arquivos";
 
 import { Manager } from "../utils/manager";
 import Link from "next/link";
+import Head from "next/head";
+
+import jsCookie from "js-cookie";
+import api from "../utils/api";
+
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Carrinho() {
   const { state, dispatch } = useContext(Manager);
@@ -19,10 +25,47 @@ export default function Carrinho() {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
   }
 
+  async function finishPurchase() {
+    const cartItems = state.cart.cartItems;
+
+    const user = JSON.parse(jsCookie.get("userInfo"));
+    const pedidos = (await api.get(`users?email=${user.email}`)).data.users
+      .pedidos;
+
+    const newOrder = {
+      date: new Date().toLocaleDateString("pt-BR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+      itens: cartItems,
+    };
+    pedidos.push(newOrder);
+
+    toast
+      .promise(
+        api.put("users", {
+          email: user.email,
+          pedidos: pedidos,
+        }),
+        {
+          success: "Compra realizada com sucesso!",
+          error: "Oh não! Ocorreu um erro",
+        }
+      )
+      .then(() => {
+        dispatch({ type: "CART_CLEAR" });
+      });
+  }
+
   return (
     <>
       <Header data={{ banner, setBanner }} />
-      <div className="tw-w-screen tw-h-min tw-flex tw-flex-col tw-pt-[200px] tw-pb-10 ">
+      <Head>
+        <title>Carrinho | Sistema para Boutique</title>
+      </Head>
+      <ToastContainer />
+      <div className="tw-w-full tw-px-[20px] tw-h-min tw-flex tw-flex-col tw-pt-[200px] tw-pb-10 ">
         <span
           className={`tw-absolute tw-top-[80px] tw-left-[20px] sm:tw-left-[110px] tw-leading-[110%] tw-text-[22px] tw-font-bold ${
             banner.title == "white" ? "tw-text-white" : "tw-text-black"
@@ -69,7 +112,7 @@ export default function Carrinho() {
                       style={{ background: obj.cor }}
                       className={`tw-border-[2px] tw-border-white tw-rounded-full tw-mr-2 hover:tw-outline-gold tw-w-[35px] tw-h-[35px] tw-outline tw-outline-black tw-outline-2`}
                     ></button>
-                    <span className="tw-font-bold">{item.preco}</span>
+                    <span className="tw-font-bold">R$ {item.preco},00</span>
                     <button onClick={() => removeItem(obj)}>
                       <FaTrash size={30} className="hover:tw-text-red-600" />
                     </button>
@@ -80,7 +123,11 @@ export default function Carrinho() {
           )}
         </div>
         <div className="tw-w-[90%] tw-ml-36 tw-flex tw-justify-end">
-          <button className="tw-py-4 tw-px-20 tw-bg-green tw-w-max tw-ml-auto tw-rounded-xl tw-font-bold tw-text-white tw-mt-10 hover:tw-text-black">
+          <button
+            className="tw-py-4 tw-px-20 tw-bg-green tw-w-max tw-ml-auto tw-rounded-xl tw-font-bold tw-text-white tw-mt-10 hover:tw-text-black disabled:tw-opacity-[60%] hover:tw-cursor-pointer"
+            disabled={state.cart.cartItems.length > 0 ? false : true}
+            onClick={() => finishPurchase()}
+          >
             Finalizar compra
           </button>
         </div>

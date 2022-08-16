@@ -102,6 +102,11 @@ function reducer(state, action) {
       return { ...state, cart: { ...state.cart, cartItems } };
     }
 
+    case "CART_CLEAR": {
+      Cookie.set("cartItems", "[]");
+      return { ...state, cart: { ...state.cart, cartItems: [] } };
+    }
+
     default:
       return state;
   }

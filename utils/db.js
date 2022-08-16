@@ -39,4 +39,16 @@ export async function getUser(client, query, res) {
   });
 }
 
+export async function updateUser(client, body, res) {
+  const updated = await client
+    .db("spb")
+    .collection("users")
+    .updateOne({ email: body.email }, { $set: { pedidos: body.pedidos } });
+
+  res.json({
+    status: 200,
+    data: updated,
+  });
+}
+
 export default client;

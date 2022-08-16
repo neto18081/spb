@@ -803,6 +803,10 @@ video {
   height: 25px;
 }
 
+.tw-h-\[330px\] {
+  height: 330px;
+}
+
 .tw-max-h-\[500px\] {
   max-height: 500px;
 }
@@ -881,6 +885,10 @@ video {
 
 .tw-max-w-\[600px\] {
   max-width: 600px;
+}
+
+.tw-max-w-\[125px\] {
+  max-width: 125px;
 }
 
 .tw-translate-x-0 {
@@ -995,14 +1003,14 @@ video {
   border-color: rgb(80 144 153 / var(--tw-border-opacity));
 }
 
-.tw-border-black {
-  --tw-border-opacity: 1;
-  border-color: rgb(53 54 58 / var(--tw-border-opacity));
-}
-
 .tw-border-\[\#cc0000\] {
   --tw-border-opacity: 1;
   border-color: rgb(204 0 0 / var(--tw-border-opacity));
+}
+
+.tw-border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(53 54 58 / var(--tw-border-opacity));
 }
 
 .tw-bg-green {
@@ -1055,6 +1063,11 @@ video {
      object-fit: contain;
 }
 
+.tw-object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .tw-p-2 {
   padding: 0.5rem;
 }
@@ -1099,6 +1112,11 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.tw-py-\[10px\] {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .tw-py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -1119,9 +1137,9 @@ video {
   padding-bottom: 50px;
 }
 
-.tw-py-\[10px\] {
-  padding-top: 10px;
-  padding-bottom: 10px;
+.tw-py-\[100px\] {
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .tw-pt-\[200px\] {
@@ -1218,14 +1236,14 @@ video {
   color: rgb(6 147 219 / var(--tw-text-opacity));
 }
 
-.tw-text-gray-500 {
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-
 .tw-text-\[\#cc0000\] {
   --tw-text-opacity: 1;
   color: rgb(204 0 0 / var(--tw-text-opacity));
+}
+
+.tw-text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
 .tw-shadow-xl {
@@ -1319,6 +1337,15 @@ video {
 
 .hover\:tw-outline-gold:hover {
   outline-color: #C0965C;
+}
+
+.disabled\:tw-bg-black:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgb(53 54 58 / var(--tw-bg-opacity));
+}
+
+.disabled\:tw-opacity-\[60\%\]:disabled {
+  opacity: 60%;
 }
 
 @media (min-width: 640px) {

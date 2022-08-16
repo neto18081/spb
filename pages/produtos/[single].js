@@ -33,12 +33,7 @@ export default function Single({ single }) {
     dispatch({ type: "CART_ADD_ITEM", payload: data });
     toast.info("Produto adicionado ao carrinho!", { position: "bottom-right" });
   }
-  //   useEffect(() => {
-  //     console.log(JSON.parse(jsCookie.get("cartItems")));
-  //   }, []);
 
-  //   const { state, dispatch } = useContext(Store);
-  // dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
   return (
     <>
       <Head>
@@ -63,7 +58,9 @@ export default function Single({ single }) {
             </h2>
             <p className="tw-w-2/3 tw-text-xl tw-mb-10">{produto.descricao}</p>
             <div className="tw-flex tw-items-center tw-justify-start tw-gap-[50px]">
-              <span className="tw-font-bold tw-text-5xl">{produto.preco}</span>
+              <span className="tw-font-bold tw-text-5xl">
+                R$ {produto.preco},00
+              </span>
               <select
                 name="estoque"
                 id="estoque"

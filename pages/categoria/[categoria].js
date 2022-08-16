@@ -24,7 +24,6 @@ export default function Categoria({ cat }) {
       produtos.push(data);
     }
   });
-  console.log(produtos);
   return (
     <>
       <Header data={{ banner, setBanner }} />
@@ -51,7 +50,9 @@ export default function Categoria({ cat }) {
                   />
                   <span className="tw-text-xl tw-font-medium">{p.titulo}</span>
                   <p className="tw-text-[16px]">{p.descricao}</p>
-                  <span className="tw-font-bold tw-text-xl ">{p.preco}</span>
+                  <span className="tw-font-bold tw-text-xl ">
+                    R$ {p.preco},00
+                  </span>
                 </a>
               </Link>
             ))}

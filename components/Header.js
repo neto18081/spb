@@ -19,9 +19,12 @@ export default function Header({ data }) {
     setBurger(!burger);
   }
   useEffect(() => {
-    state.cart.cartItems.length > 0 && setCart(state.cart.cartItems.length);
+    state.cart.cartItems.length >= 0 && setCart(state.cart.cartItems.length);
+  }, [state.cart.cartItems]);
+
+  useEffect(() => {
     setUser(state.userInfo);
-  }, [state]);
+  }, []);
 
   return (
     <>
@@ -68,7 +71,7 @@ export default function Header({ data }) {
         </div>
 
         <div className="tw-flex tw-items-start tw-justify-center tw-flex-col tw-w-full tw-pt-[100px]">
-          <Link href={user ? "/perfil" : "/login"}>
+          <Link href={user ? "/pedidos" : "/login"}>
             <a className="nav-link tw-bg-gold hover:tw-text-black hover:tw-font-bold">
               {user ? user.nome : "Login"}
             </a>
