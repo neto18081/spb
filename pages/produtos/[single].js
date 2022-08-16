@@ -7,6 +7,7 @@ import { useState } from "react";
 import { DataProducts } from "../../components/Arquivos";
 import { Manager } from "../../utils/manager";
 import jsCookie from "js-cookie";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Single({ single }) {
   const [banner, setBanner] = useState({
@@ -30,6 +31,7 @@ export default function Single({ single }) {
       quantidade: quantity,
     };
     dispatch({ type: "CART_ADD_ITEM", payload: data });
+    toast.info("Produto adicionado ao carrinho!", { position: "bottom-right" });
   }
   //   useEffect(() => {
   //     console.log(JSON.parse(jsCookie.get("cartItems")));
@@ -42,6 +44,7 @@ export default function Single({ single }) {
       <Head>
         <title>{produto.titulo} | Sistema para Boutique</title>
       </Head>
+      <ToastContainer />
       <Header data={{ banner, setBanner }} />
       <div className="tw-w-screen tw-h-screen tw-flex tw-flex-col tw-pt-[200px]">
         <span

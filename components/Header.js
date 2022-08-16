@@ -10,6 +10,7 @@ export default function Header({ data }) {
 
   const [burger, setBurger] = useState(false);
   const [cart, setCart] = useState(0);
+  const [user, setUser] = useState("");
   const { banner, setBanner } = data;
 
   function toggleNavbar() {
@@ -19,6 +20,7 @@ export default function Header({ data }) {
   }
   useEffect(() => {
     state.cart.cartItems.length > 0 && setCart(state.cart.cartItems.length);
+    setUser(state.userInfo);
   }, [state]);
 
   return (
@@ -66,9 +68,9 @@ export default function Header({ data }) {
         </div>
 
         <div className="tw-flex tw-items-start tw-justify-center tw-flex-col tw-w-full tw-pt-[100px]">
-          <Link href="/login">
+          <Link href={user ? "/perfil" : "/login"}>
             <a className="nav-link tw-bg-gold hover:tw-text-black hover:tw-font-bold">
-              Login
+              {user.nome || "Login"}
             </a>
           </Link>
           {/* <Link href="/pedidos">
