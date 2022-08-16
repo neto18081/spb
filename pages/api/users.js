@@ -1,4 +1,4 @@
-import client, { createUser, getUser } from "../../utils/db";
+import client, { createUser, getUser, updateUser } from "../../utils/db";
 
 export default async function Users(req, res) {
   try {
@@ -9,6 +9,9 @@ export default async function Users(req, res) {
 
     // PASSA NO BODY INFORMAÇÕES PARA CRIAR O USUÁRIO
     if (req.method == "POST") await createUser(client, req.body, res);
+
+    // EDITAR INFORMAÇÕES DO USUÁRIO
+    if (req.method == "PUT") await updateUser(client, req.body, res);
   } catch (err) {
     res.json({
       status: 404,
