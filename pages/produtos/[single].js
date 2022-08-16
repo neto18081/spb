@@ -37,7 +37,6 @@ export default function Single({ single }) {
 
   //   const { state, dispatch } = useContext(Store);
   // dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
-
   return (
     <>
       <Head>
