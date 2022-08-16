@@ -9,7 +9,7 @@ const initialState = {
       ? JSON.parse(Cookie.get("cartItems"))
       : [],
   },
-  // userInfo: Cookie.get("userInfo") ? JSON.parse(Cookie.get("userInfo")) : null,
+  userInfo: Cookie.get("userInfo") ? JSON.parse(Cookie.get("userInfo")) : null,
 };
 
 function reducer(state, action) {

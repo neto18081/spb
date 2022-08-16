@@ -30,8 +30,8 @@ export async function createUser(client, newListing, res) {
   });
 }
 
-export async function retrieveUsers(client, res) {
-  const users = await client.db("spb").collection("users").find({});
+export async function getUser(client, query, res) {
+  const users = await client.db("spb").collection("users").findOne(query);
 
   res.json({
     status: 200,
