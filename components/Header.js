@@ -70,7 +70,7 @@ export default function Header({ data }) {
         <div className="tw-flex tw-items-start tw-justify-center tw-flex-col tw-w-full tw-pt-[100px]">
           <Link href={user ? "/perfil" : "/login"}>
             <a className="nav-link tw-bg-gold hover:tw-text-black hover:tw-font-bold">
-              {user.nome || "Login"}
+              {user ? user.nome : "Login"}
             </a>
           </Link>
           {/* <Link href="/pedidos">
