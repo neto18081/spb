@@ -4,24 +4,35 @@ import React, { useContext, useEffect } from "react";
 import Head from "next/head";
 import Header from "../../components/Header";
 import { useState } from "react";
-import { DataProducts } from "../../components/Arquivos";
 import { Manager } from "../../utils/manager";
 import jsCookie from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
 
-export default function Single({ single }) {
+import api from "../../utils/api";
+
+import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+
+export default function Single({ produto }) {
   const [banner, setBanner] = useState({
     title: "black",
   });
-
-  const produto = DataProducts.find((ui) => ui.slug == single);
 
   const [image, setImage] = useState(produto.galeria[0]);
   const [size, setSize] = useState(produto.tamanho[0]);
   const [color, setColor] = useState(produto.cor[0]);
   const [quantity, setQuantity] = useState(1);
+  const [user, setUser] = useState();
 
   const { state, dispatch } = useContext(Manager);
+  const [form, setForm] = useState({
+    error: false,
+    avaliacao: 1,
+    mensagem: "",
+  });
+
+  useEffect(() => {
+    setUser(state.userInfo);
+  }, []);
 
   function addToCart() {
     const data = {
@@ -34,6 +45,55 @@ export default function Single({ single }) {
     toast.info("Produto adicionado ao carrinho!", { position: "bottom-right" });
   }
 
+  async function avaliar() {
+    if (form.mensagem == "") setForm({ ...form, error: true });
+    else {
+      let avaliacao;
+      // const avaliacoes = (await api.get(`products?id=${produto.id}`)).data.data
+      const avaliacoes = produto.avaliacoes;
+      if (avaliacoes == undefined) {
+        avaliacao = {
+          id: produto.id,
+          avaliacao: [
+            {
+              nota: form.avaliacao,
+              mensagem: form.mensagem,
+              autor: state.userInfo.nome,
+              date: new Date().toLocaleDateString("pt-BR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }),
+            },
+          ],
+        };
+      } else {
+        avaliacoes.push({
+          nota: form.avaliacao,
+          mensagem: form.mensagem,
+          autor: state.userInfo.nome,
+          date: new Date().toLocaleDateString("pt-BR", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          }),
+        });
+
+        avaliacao = {
+          id: produto.id,
+          avaliacao: avaliacoes,
+        };
+      }
+
+      await api.put("products", avaliacao);
+      toast.success("Avaliação enviada com sucesso!", {
+        position: "bottom-right",
+      });
+
+      setForm({ ...form, mensagem: "" });
+    }
+  }
+
   return (
     <>
       <Head>
@@ -41,9 +101,9 @@ export default function Single({ single }) {
       </Head>
       <ToastContainer />
       <Header data={{ banner, setBanner }} />
-      <div className="tw-w-screen tw-h-screen tw-flex tw-flex-col tw-pt-[200px]">
+      <div className="tw-w-screen tw-h-screen tw-flex tw-flex-col tw-pt-[20px]">
         <span
-          className={`tw-absolute tw-top-[80px] tw-left-[20px] sm:tw-left-[110px] tw-leading-[110%] tw-text-[22px] tw-font-bold ${
+          className={`tw-ml-28 tw-leading-[110%] tw-text-[22px] tw-font-bold tw-pb-[50px] ${
             banner.title == "white" ? "tw-text-white" : "tw-text-black"
           }`}
         >
@@ -137,13 +197,104 @@ export default function Single({ single }) {
             />
           </div>
         </div>
+
+        <div className="tw-ml-28 tw-py-[100px]">
+          {user && (
+            <div className="tw-pl-[20px] tw-flex tw-flex-col tw-items-start">
+              <h3 className="tw-text-[26px] tw-pb-[30px]">
+                Faça sua avaliação
+              </h3>
+              <div className="tw-flex tw-items-center tw-justify-start">
+                <span className="tw-text-[20px] tw-pr-[20px]">Nota: </span>
+                {[0, 0, 0, 0, 0].map((s, i) => {
+                  if (i + 1 <= form.avaliacao)
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => setForm({ ...form, avaliacao: i + 1 })}
+                      >
+                        <AiFillStar color="#c0965c" size={30} />
+                      </button>
+                    );
+                  else
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => setForm({ ...form, avaliacao: i + 1 })}
+                      >
+                        <AiOutlineStar size={30} color="#c0965c" />
+                      </button>
+                    );
+                })}
+              </div>
+              <textarea
+                className={`tw-rounded-xl tw-px-6 tw-py-2 tw-border-2 tw-w-[1200px] ${
+                  form.error && "tw-border-[#cc0000]"
+                } hover:tw-border-black tw-mt-4 tw-mb-[10px]`}
+                placeholder="Escreva uma avaliação"
+                rows={4}
+                value={form.mensagem}
+                onChange={(e) =>
+                  setForm({ ...form, mensagem: e.target.value, error: false })
+                }
+              />
+              {form.error && (
+                <span className="tw-text-[#cc0000] tw-py-[10px]">
+                  Você deve escrever uma avaliação!
+                </span>
+              )}
+              <button
+                onClick={() => avaliar()}
+                className="tw-p-4 tw-border-none tw-px-[50px] tw-rounded-xl tw-bg-gold tw-text-white tw-font-bold hover:tw-bg-green tw-mt-[10px]"
+              >
+                ENVIAR
+              </button>
+            </div>
+          )}
+
+          <h2 className="tw-flex tw-flex-start tw-text-6xl tw-h-max tw-my-[30px]">
+            Avaliações
+          </h2>
+          {produto.avaliacoes == undefined ? (
+            <span>Nenhuma avaliação ainda :{"("}</span>
+          ) : (
+            produto.avaliacoes.map((p, i) => (
+              <div
+                key={i}
+                className="tw-my-10 tw-items-center tw-border-2 tw-shadow-xl tw-rounded-2xl tw-py-[15px] tw-px-[30px] tw-w-[90%]"
+              >
+                <h4 className="tw-text-[26px]">
+                  {p.autor == undefined ? `Anônimo #${i + 1}` : p.autor}
+                </h4>
+                <div className="tw-py-[10px]">
+                  {[0, 0, 0, 0, 0].map((s, i) => {
+                    if (i + 1 <= p.nota)
+                      return (
+                        <button key={i}>
+                          <AiFillStar color="#c0965c" size={25} />
+                        </button>
+                      );
+                    else
+                      return (
+                        <button key={i}>
+                          <AiOutlineStar size={25} color="#c0965c" />
+                        </button>
+                      );
+                  })}
+                </div>
+                <p className="tw-px-[10px]">{p.mensagem}</p>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </>
   );
 }
 
 Single.getInitialProps = async ({ query }) => {
+  const res = await api.get(`products?slug=${query.single}`);
   return {
-    single: query.single,
+    produto: res.data.data,
   };
 };

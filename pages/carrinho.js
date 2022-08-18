@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import Header from "../components/Header";
 import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
-import { DataProducts } from "../components/Arquivos";
 
 import { Manager } from "../utils/manager";
 import Link from "next/link";
@@ -14,7 +13,7 @@ import api from "../utils/api";
 
 import { toast, ToastContainer } from "react-toastify";
 
-export default function Carrinho() {
+export default function Carrinho({ produtos }) {
   const { state, dispatch } = useContext(Manager);
 
   const [banner, setBanner] = useState({
@@ -26,36 +25,40 @@ export default function Carrinho() {
   }
 
   async function finishPurchase() {
-    const cartItems = state.cart.cartItems;
+    if (!state.userInfo) {
+      location.assign("/login");
+    } else {
+      const cartItems = state.cart.cartItems;
 
-    const user = JSON.parse(jsCookie.get("userInfo"));
-    const pedidos = (await api.get(`users?email=${user.email}`)).data.users
-      .pedidos;
+      const user = JSON.parse(jsCookie.get("userInfo"));
+      const pedidos = (await api.get(`users?email=${user.email}`)).data.users
+        .pedidos;
 
-    const newOrder = {
-      date: new Date().toLocaleDateString("pt-BR", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }),
-      itens: cartItems,
-    };
-    pedidos.push(newOrder);
-
-    toast
-      .promise(
-        api.put("users", {
-          email: user.email,
-          pedidos: pedidos,
+      const newOrder = {
+        date: new Date().toLocaleDateString("pt-BR", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
         }),
-        {
-          success: "Compra realizada com sucesso!",
-          error: "Oh não! Ocorreu um erro",
-        }
-      )
-      .then(() => {
-        dispatch({ type: "CART_CLEAR" });
-      });
+        itens: cartItems,
+      };
+      pedidos.push(newOrder);
+
+      toast
+        .promise(
+          api.put("users", {
+            email: user.email,
+            pedidos: pedidos,
+          }),
+          {
+            success: "Compra realizada com sucesso!",
+            error: "Oh não! Ocorreu um erro",
+          }
+        )
+        .then(() => {
+          dispatch({ type: "CART_CLEAR" });
+        });
+    }
   }
 
   return (
@@ -65,7 +68,7 @@ export default function Carrinho() {
         <title>Carrinho | Sistema para Boutique</title>
       </Head>
       <ToastContainer />
-      <div className="tw-w-full tw-px-[20px] tw-h-min tw-flex tw-flex-col tw-pt-[200px] tw-pb-10 ">
+      <div className="tw-w-full tw-px-[32px] tw-pl-[144px] tw-h-min tw-flex tw-flex-col tw-pt-[200px] tw-pb-10 ">
         <span
           className={`tw-absolute tw-top-[80px] tw-left-[20px] sm:tw-left-[110px] tw-leading-[110%] tw-text-[22px] tw-font-bold ${
             banner.title == "white" ? "tw-text-white" : "tw-text-black"
@@ -87,10 +90,10 @@ export default function Carrinho() {
             </span>
           ) : (
             state.cart.cartItems.map((obj, i) => {
-              const item = DataProducts.find((i, j) => i.id == obj.id);
+              const item = produtos.find((i, j) => i.id == obj.id);
               return (
-                <div key={i}>
-                  <div className=" tw-mb-10 tw-ml-36 tw-flex tw-items-center tw-w-[90%] tw-justify-around tw-border-2 tw-h-36 tw-shadow-xl">
+                <div className="tw-flex tw-justify-center" key={i}>
+                  <div className=" tw-mb-10 tw-flex tw-items-center tw-w-full tw-justify-around tw-border-2 tw-h-36 tw-shadow-xl">
                     <img src={item.galeria[0]} alt="" className="tw-w-20" />
                     <span className="tw-font-bold">{item.titulo}</span>
                     <select
@@ -122,7 +125,7 @@ export default function Carrinho() {
             })
           )}
         </div>
-        <div className="tw-w-[90%] tw-ml-36 tw-flex tw-justify-end">
+        <div className="tw-w-full tw-flex tw-justify-end">
           <button
             className="tw-py-4 tw-px-20 tw-bg-green tw-w-max tw-ml-auto tw-rounded-xl tw-font-bold tw-text-white tw-mt-10 hover:tw-text-black disabled:tw-opacity-[60%] hover:tw-cursor-pointer"
             disabled={state.cart.cartItems.length > 0 ? false : true}
@@ -134,4 +137,14 @@ export default function Carrinho() {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const res = await api.get("products");
+
+  return {
+    props: {
+      produtos: res.data.data,
+    },
+  };
 }

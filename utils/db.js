@@ -51,4 +51,42 @@ export async function updateUser(client, body, res) {
   });
 }
 
+export async function createProduct(client, newListing, res) {
+  await client.db("spb").collection("products").insertOne(newListing);
+}
+
+export async function getProducts(client, query) {
+  let array = [];
+
+  if (JSON.stringify(query) == "{}") {
+    await client
+      .db("spb")
+      .collection("products")
+      .find({})
+      .forEach((d) => array.push(d));
+  } else {
+    array = await client.db("spb").collection("products").findOne(query);
+  }
+  return array;
+}
+
+export async function updateProduct(client, body, res) {
+  const updated = await client
+    .db("spb")
+    .collection("products")
+    .updateOne(
+      { id: body.id },
+      {
+        $set: {
+          avaliacoes: body.avaliacao,
+        },
+      }
+    );
+
+  res.json({
+    status: 200,
+    data: updated,
+  });
+}
+
 export default client;

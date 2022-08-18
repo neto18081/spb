@@ -5,15 +5,25 @@ import { useState } from "react";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 
-import Link from "next/link";
-import { DataProducts } from "../components/Arquivos";
+import api from "../utils/api";
 
-export default function Home() {
+import Link from "next/link";
+import { Categorias } from "../components/Arquivos";
+
+export async function getStaticProps() {
+  const res = await api.get("products");
+  return {
+    props: {
+      produtos: res.data.data,
+    },
+  };
+}
+
+export default function Home({ produtos }) {
   const [banner, setBanner] = useState({
     title: "black",
   });
 
-  const cores = ["#5D6CAC", "#5dac8a", "#C25771"];
   return (
     <>
       <Head>
@@ -25,7 +35,7 @@ export default function Home() {
 
       <div className="tw-mt-16 tw-w-4/5 tw-mx-auto tw-py-[100px]">
         <div className="tw-grid tw-grid-cols-3 tw-gap-10">
-          {DataProducts.map((p) => (
+          {produtos.map((p) => (
             <Link key={p.id} href={`/produtos/${p.slug}`}>
               <a className="tw-flex tw-flex-col tw-shadow-2xl tw-p-2 tw-justify-start tw-text-left hover:tw-bg-gold">
                 <img
@@ -34,7 +44,10 @@ export default function Home() {
                   className="tw-mb-4 tw-w-full tw-h-[330px] tw-object-cover"
                 />
                 <span
-                  style={{ background: cores[Math.floor(Math.random() * 3)] }}
+                  style={{
+                    background: Categorias.find((c) => c.slug == p.categorias)
+                      .cor,
+                  }}
                   className="tw-flex tw-items-center tw-justify-center tw-max-w-[125px] tw-rounded-[50px] tw-text-white tw-font-bold"
                 >
                   {p.categorias.toUpperCase()}

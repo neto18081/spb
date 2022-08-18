@@ -3,7 +3,6 @@ import { createContext, useReducer } from "react";
 
 export const Manager = createContext();
 const initialState = {
-  darkMode: Cookie.get("darkMode") === "ON" ? true : false,
   cart: {
     cartItems: Cookie.get("cartItems")
       ? JSON.parse(Cookie.get("cartItems"))
@@ -105,6 +104,11 @@ function reducer(state, action) {
     case "CART_CLEAR": {
       Cookie.set("cartItems", "[]");
       return { ...state, cart: { ...state.cart, cartItems: [] } };
+    }
+
+    case "USER_LOGOUT": {
+      Cookie.set("userInfo", "");
+      return { ...state, userInfo: null };
     }
 
     default:
