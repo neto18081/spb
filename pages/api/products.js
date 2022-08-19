@@ -39,7 +39,7 @@ export default async function Products(req, res) {
   } catch (err) {
     res.json({
       status: 404,
-      message: "Bad request",
+      message: "Bad request!",
     });
   } finally {
     await client.close();
