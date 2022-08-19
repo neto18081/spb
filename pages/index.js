@@ -10,14 +10,14 @@ import api from "../utils/api";
 import Link from "next/link";
 import { Categorias } from "../components/Arquivos";
 
-export async function getStaticProps() {
-  const res = await api.get("products");
-  return {
-    props: {
-      produtos: res.data.data,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   const res = await api.get("products");
+//   return {
+//     props: {
+//       produtos: res.data.data,
+//     },
+//   };
+// }
 
 export default function Home({ produtos }) {
   const [banner, setBanner] = useState({
@@ -29,8 +29,9 @@ export default function Home({ produtos }) {
       <Head>
         <title>Início | Sistema para Boutique</title>
       </Head>
+      <div>Teste123</div>
 
-      <Header data={{ banner, setBanner }} />
+      {/* <Header data={{ banner, setBanner }} />
       <Banner banner={banner} />
 
       <div className="tw-mt-16 tw-w-4/5 tw-mx-auto tw-py-[100px]">
@@ -61,7 +62,7 @@ export default function Home({ produtos }) {
             </Link>
           ))}
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
