@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { IoMdCart } from "react-icons/io";
+import { AiOutlineWhatsApp } from "react-icons/ai";
 import Link from "next/link";
 
 import { Categorias } from "./Arquivos";
@@ -28,6 +29,14 @@ export default function Header({ data }) {
 
   return (
     <>
+      <Link href="https://api.whatsapp.com/send?phone=5542999042542">
+        <a
+          target="_blank"
+          className="tw-fixed tw-right-[40px] tw-bottom-[40px] tw-bg-green tw-w-[80px] tw-h-[80px] tw-flex tw-items-center tw-justify-center tw-rounded-[50px]"
+        >
+          <AiOutlineWhatsApp color="#fff" size={50} />
+        </a>
+      </Link>
       <div className="tw-w-screen sm:tw-w-[100px] tw-flex tw-items-center tw-justify-end sm:tw-justify-start sm:tw-flex-col sm:tw-py-[20px] tw-border-b-2 sm:tw-border-r-2 tw-border-green tw-h-[70px] sm:tw-h-screen tw-fixed tw-top-0 tw-left-0 tw-gap-[20px] tw-z-10 tw-bg-white tw-px-[20px] sm:tw-px-0">
         <div
           onClick={toggleNavbar}

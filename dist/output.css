@@ -652,6 +652,22 @@ video {
   top: -5px;
 }
 
+.tw-right-\[20px\] {
+  right: 20px;
+}
+
+.tw-bottom-\[20px\] {
+  bottom: 20px;
+}
+
+.tw-right-\[40px\] {
+  right: 40px;
+}
+
+.tw-bottom-\[40px\] {
+  bottom: 40px;
+}
+
 .tw-z-10 {
   z-index: 10;
 }
@@ -756,24 +772,16 @@ video {
   margin-right: 3rem;
 }
 
-.tw-mt-\[-200px\] {
-  margin-top: -200px;
-}
-
-.tw-mt-2 {
-  margin-top: 0.5rem;
-}
-
-.tw-mt-1 {
-  margin-top: 0.25rem;
-}
-
 .tw-mb-\[10px\] {
   margin-bottom: 10px;
 }
 
 .tw-mt-\[10px\] {
   margin-top: 10px;
+}
+
+.tw-mt-\[-200px\] {
+  margin-top: -200px;
 }
 
 .tw-block {
@@ -786,10 +794,6 @@ video {
 
 .tw-grid {
   display: grid;
-}
-
-.tw-hidden {
-  display: none;
 }
 
 .tw-h-screen {
@@ -840,12 +844,8 @@ video {
   height: 25px;
 }
 
-.tw-h-\[350px\] {
-  height: 350px;
-}
-
-.tw-h-\[200px\] {
-  height: 200px;
+.tw-h-\[80px\] {
+  height: 80px;
 }
 
 .tw-max-h-\[500px\] {
@@ -920,20 +920,20 @@ video {
   width: 500px;
 }
 
+.tw-w-\[1200px\] {
+  width: 1200px;
+}
+
 .tw-w-\[25px\] {
   width: 25px;
 }
 
-.tw-w-\[700px\] {
-  width: 700px;
+.tw-w-\[70px\] {
+  width: 70px;
 }
 
-.tw-w-\[900px\] {
-  width: 900px;
-}
-
-.tw-w-\[1200px\] {
-  width: 1200px;
+.tw-w-\[80px\] {
+  width: 80px;
 }
 
 .tw-max-w-\[125px\] {
@@ -1194,16 +1194,6 @@ video {
   padding-right: 10px;
 }
 
-.tw-px-\[20px\] {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.tw-py-\[50px\] {
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
 .tw-px-\[50px\] {
   padding-left: 50px;
   padding-right: 50px;
@@ -1217,6 +1207,16 @@ video {
 .tw-px-\[30px\] {
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.tw-px-\[20px\] {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.tw-py-\[50px\] {
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .tw-pt-\[200px\] {
@@ -1233,10 +1233,6 @@ video {
 
 .tw-pb-\[100px\] {
   padding-bottom: 100px;
-}
-
-.tw-pt-\[100px\] {
-  padding-top: 100px;
 }
 
 .tw-pt-\[20px\] {
@@ -1257,6 +1253,10 @@ video {
 
 .tw-pr-\[20px\] {
   padding-right: 20px;
+}
+
+.tw-pt-\[100px\] {
+  padding-top: 100px;
 }
 
 .tw-text-left {
@@ -1318,16 +1318,16 @@ video {
   line-height: 1;
 }
 
-.tw-text-\[12px\] {
-  font-size: 12px;
+.tw-text-\[26px\] {
+  font-size: 26px;
 }
 
 .tw-text-\[20px\] {
   font-size: 20px;
 }
 
-.tw-text-\[26px\] {
-  font-size: 26px;
+.tw-text-\[12px\] {
+  font-size: 12px;
 }
 
 .tw-font-bold {
@@ -1336,18 +1336,6 @@ video {
 
 .tw-font-medium {
   font-weight: 500;
-}
-
-.tw-font-normal {
-  font-weight: 400;
-}
-
-.tw-font-light {
-  font-weight: 300;
-}
-
-.tw-font-\[100\] {
-  font-weight: 100;
 }
 
 .tw-leading-\[110\%\] {
