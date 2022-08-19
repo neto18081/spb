@@ -8,14 +8,6 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
-// async function listDatabases(client) {
-//   let databasesList = await client.db().admin().listDatabases();
-
-//   const dbs = [];
-//   databasesList.databases.forEach((db) => dbs.push(db.name));
-//   return dbs;
-// }
-
 export async function createUser(client, newListing, res) {
   const result = await client
     .db("spb")
