@@ -55,7 +55,6 @@ export default function Categoria({ cat, products }) {
                     className="tw-mb-4 tw-w-full"
                   />
                   <span className="tw-text-xl tw-font-medium">{p.titulo}</span>
-                  <p className="tw-text-[16px]">{p.descricao}</p>
                   <span className="tw-font-bold tw-text-xl ">
                     R$ {p.preco},00
                   </span>

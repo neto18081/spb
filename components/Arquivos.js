@@ -33,8 +33,8 @@ export const Categorias = [
     cor: "#5D6CAC",
   },
   {
-    name: "Zorba",
-    slug: "zorba",
+    name: "Calçados",
+    slug: "calcados",
     cor: "#C25771",
   },
 

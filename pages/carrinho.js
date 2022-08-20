@@ -146,5 +146,6 @@ export async function getStaticProps() {
     props: {
       produtos: res.data.data,
     },
+    revalidate: 5,
   };
 }

@@ -16,6 +16,7 @@ export async function getStaticProps() {
     props: {
       produtos: res.data.data,
     },
+    revalidate: 5,
   };
 }
 
@@ -53,7 +54,6 @@ export default function Home({ produtos }) {
                   {p.categorias.toUpperCase()}
                 </span>
                 <span className="tw-text-xl tw-font-medium">{p.titulo}</span>
-                <p className="tw-text-[16px]">{p.descricao}</p>
                 <span className="tw-font-bold tw-text-xl ">
                   R$ {p.preco},00
                 </span>
